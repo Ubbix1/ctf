@@ -76,7 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['challenge'], $_POST['
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CTF Challenge Index</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to global style.css -->
+    <link rel="stylesheet" href="../assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/navbar.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../assets/styles/footer.css?v=<?php echo time(); ?>">
+    <style>
     <script>
         function startTimer() {
             document.getElementById('challenges').style.display = 'grid'; // Show challenges after clicking start
@@ -106,61 +109,81 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['challenge'], $_POST['
     <style>
 		
 		body {
-			background-color:black;
+			background-color: var(--body-color);
+			font-family: 'Open Sans', sans-serif;
+			color: var(--text-color);
 		}
         .challenge-grid {
-			width: 80%;
-            display:flex !important;
-			flex-direction: column !important;
-			justify-content: center;
-			align-items: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            animation: fadeIn 1s ease-in;
         }
         .challenge-item {
-            background-color: rgba(0, 0, 0, 0.7); /* Glassmorphic effect */
+            background-color: var(--secondary-body);
+            border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 20px;
-            color: black;
             text-align: center;
-            transition: transform 0.3s;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			gap: 10px;
-			width: 400px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
         .challenge-item:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 10, 65, 0.3);
         }
         .timer-container {
             margin: 20px 0;
             font-size: 20px;
-            color: white; /* Timer color */
+            color: var(--text-color);
         }
 		
 		.challenge-item a {
-			color: white !important;
-			font-size: 20px;
-			text-transform: capitalize;
-			font-style: sans-serif
+			color: var(--text-color) !important;
+			font-size: 18px;
+			font-weight: 500;
 		}
 		
-		form button { margin: 10px 0;}
+		form button {
+			margin: 10px 0;
+			background-color: var(--border-color);
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		form button:hover {
+			background-color: #e0093a;
+		}
         .success {
-            color: green;
+            color: #4CAF50;
         }
         .error {
-            color: red;
+            color: #f44336;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1 style="color: white;">CTF Challenge</h1>
+    <?php include "../components/navbar.php"; ?>
+    <div class="header" style="text-align: center; margin: 20px 0; animation: fadeIn 1s ease-in;">
+        <h1 style="color: var(--text-color); font-size: 36px; margin-bottom: 10px;">CTF Challenge</h1>
         <div class="timer-container">
             <span id="countdown"><?= sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds); ?></span>
         </div>
-        <button onclick="startTimer()">Start CTF</button>
+        <button onclick="startTimer()" style="background-color: var(--border-color); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Start CTF</button>
     </div>
 
     <div id="challenges" class="challenge-grid" style="display:none;">
@@ -230,5 +253,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['challenge'], $_POST['
             </form>
         </div>
     </div>
+    <?php include "../components/footer.php"; ?>
 </body>
 </html>

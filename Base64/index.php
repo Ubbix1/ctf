@@ -47,7 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta property="og:site_name" content="Plexaur.com">
     <meta property="og:url" content="https://ctf.plexaur.com/base64/index.php">
 
+    <link rel="stylesheet" href="../assets/styles/style.css">
     <link rel="stylesheet" href="../assets/styles/navbar.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../assets/styles/footer.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../assets/styles/footer.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../assets/styles/base64.css?v=<?php echo time(); ?>">
 </head>
@@ -129,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             showCopyConfirmation();
         }
     </script>
+    <?php include "../components/footer.php"; ?>
 </body>
 
 </html>
