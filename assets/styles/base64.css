@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+    --body-color: #0f0f0f;
+    --secondary-body: #181823;
+    --text-color: #dddddd;
+    --border-color: #ff0a41;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    color: #dddddd;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: capitalize;
+}
+
+html {
+    background-color: transparent;
+}
+
+body {
+    background-color: var(--body-color) !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: #dddd !important;
+}
+
+ul {
+    list-style: none;
+}
+
+main {
+    min-height: 100vh;
+    height: auto;
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main .base {
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 48%;
+}
+
+
+.base_header{
+    font-weight: 400;
+}
+
+.input,
+.output {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px 5px;
+}
+
+input, textarea, button {
+    background: transparent;
+    color: var(--border-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 7px;
+    font-size: 17px;
+}
+
+textarea {
+    border-radius: 7px 7px 0 0;
+}
+
+.actbtn {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.actbtn button {
+    width: 100%;
+}
+
+.actbtn button:nth-child(1) {
+    border-radius:  0 0 0 7px;
+}
+
+
+.actbtn button:nth-child(2) {
+    border-radius:  0 0 7px 0;
+}
+
+
+.output {
+    margin: 0 !important;
+}
+
+#outputText {
+    width: 100%;
+    height: auto;
+    min-height: 4rem;
+    border: 1px solid var(--border-color);
+    margin: 10px auto;
+    border-radius: 7px 7px 0 0;
+    white-space: pre-wrap;
+    overflow-y: scroll;
+    scroll-snap-type: mandatory;
+    color: rgb(0, 255, 0);
+    padding: 5px;
+}
+
+#outputText::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
+    display: none;
+}
+
+
+button {
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.copy {
+    border-radius: 0 0 7px 7px;
+}
+
+#copyConfirmation {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    display: inline-block;
+    border: 1px solid var(--border-color);
+    padding: 0 10px ;
+    border-radius: 7px;
+    box-shadow: 0px 0px 17px var(--border-color) inset;
+    background-color: var(--body-color);
+    z-index: 999;
+    opacity: 0; 
+    transform: translateX(2rem);
+    visibility: hidden;
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out, visibility  300ms ease-in-out;
+}
+
+#copyConfirmation:hover {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.copy-confirmation-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px ;
+}
+
+#copyConfirmation .copy-confirmation-box p {
+    display: inline-block;
+    font-size: 18px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 600px) {
+    main .base {
+        padding: 0;
+        width: 80%;
+    }
+}

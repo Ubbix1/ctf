@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAP File Reader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        input[type="file"] {
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            margin-top: 20px;
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Upload and Read CAP File</h1>
+        <input type="file" id="fileInput" accept=".cap">
+        <button onclick="readFile()">Upload and Display File Info</button>
+        <pre id="fileContent">File content will appear here...</pre>
+    </div>
+
+    <script>
+        function readFile() {
+            const input = document.getElementById('fileInput');
+            const fileContent = document.getElementById('fileContent');
+            
+            if (!input.files.length) {
+                fileContent.textContent = 'No file selected';
+                return;
+            }
+
+            const file = input.files[0];
+            fileContent.textContent = `File Name: ${file.name}\nFile Size: ${file.size} bytes\nFile Type: ${file.type || 'Unknown'}\nLast Modified: ${file.lastModifiedDate}`;
+
+            // Optional: read the file content as binary
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                fileContent.textContent += `\n\nFile Data (First 100 bytes):\n` + new Uint8Array(e.target.result).slice(0, 100).join(' ');
+            };
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
+
+</body>
+</html>
