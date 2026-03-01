@@ -1,3 +1,73 @@
-.vscode
-.well-known
-.php*
+# Editor / IDE
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs / caches / temp
+*.log
+*.cache
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# PHP / Composer
+vendor/
+composer.phar
+
+# JS / build artifacts
+node_modules/
+dist/
+build/
+public/build/
+coverage/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+src/config/db.php
+
+# XAMPP local folders
+dashboard/
+xampp/
+webalizer/
+New folder/
+img/
+applications.html
+bitnami.css
+
+# Runtime-generated data
+uploads/
+storage/
+cache/
+
+# Local DB files / dumps
+*.sqlite
+*.sqlite3
+*.sql
+
+# Archives / exports
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# ACME / cert challenge artifacts
+.well-known/
+
+# Project setup/status docs (generated onboarding docs)
+START_HERE.md
+SETUP_STEPS.md
+QUICK_START.md
+SUMMARY.txt
+VERIFICATION_COMPLETE.txt
+IMPLEMENTATION_COMPLETE.md
+README_FIRST.txt
+00_READ_ME_FIRST.txt
+DATABASE_SETUP.md
+style.txt

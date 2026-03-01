@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #0b0b0b, #000);
+      color: #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 50px 60px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 60px rgba(0, 255, 204, 0.15);
+      position: relative;
+      z-index: 2;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      color: #00ffcc;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      margin-bottom: 28px;
+    }
+
+    a {
+      display: inline-block;
+      padding: 12px 26px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #0a0a0a;
+      background: #00ffcc;
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 255, 204, 0.4);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* animated background dots */
+    canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="bg"></canvas>
+
+  <div class="container">
+    <h1 id="glitch">najil</h1>
+    <p>Simple. Animated. Cyber-clean.</p>
+    <a href="#">Enter</a>
+  </div>
+
+  <!-- <script>
+    /* ===== Glitch text animation ===== */
+    const text = document.getElementById("glitch");
+    const original = text.textContent;
+    const chars = "!@#$%^&*()_+-=<>?/{}[]";
+
+    setInterval(() => {
+      let glitched = "";
+      for (let i = 0; i < original.length; i++) {
+        glitched += Math.random() < 0.15
+          ? chars[Math.floor(Math.random() * chars.length)]
+          : original[i];
+      }
+      text.textContent = glitched;
+
+      setTimeout(() => {
+        text.textContent = original;
+      }, 120);
+    }, 2000);
+
+    /* ===== Canvas cyber particle animation ===== */
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    const particles = Array.from({ length: 80 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.5,
+      v: Math.random() * 0.3 + 0.1
+    }));
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00ffcc";
+
+      particles.forEach(p => {
+        p.y -= p.v;
+        if (p.y < 0) p.y = canvas.height;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script> -->
+
+</body>
+</html>
