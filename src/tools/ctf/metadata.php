@@ -1,3 +1,6 @@
+<?php
+$challenge_flag = get_ctf_flag_map()['meta'] ?? '';
+?>
 <!-- Dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 
@@ -40,13 +43,18 @@
                 <p class="text-[10px] text-neutral-600 mt-2">* Download the file, then upload it above to extract EXIF tags.</p>
             </div>
 
-            <!-- Flag Input Shortcut -->
             <div class="border border-neutral-800 bg-neutral-950 rounded-xl p-6">
                 <h3 class="text-xs font-bold text-neutral-500 uppercase tracking-wider mb-2">Found the flag?</h3>
-                <form class="flex gap-2" onsubmit="return false;">
-                    <input type="text" placeholder="flag{...}" class="w-full bg-black border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-neutral-600">
-                    <button class="bg-white text-black px-4 py-2 rounded text-sm font-bold hover:bg-neutral-200">Submit</button>
+                <form id="metaFlagForm" class="flex gap-2" onsubmit="checkMetaFlag(event)">
+                    <input type="text" id="metaFlagInput" placeholder="flag{...}" class="w-full bg-black border border-neutral-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-neutral-600 transition-colors">
+                    <button type="submit" class="bg-white text-black px-4 py-2 rounded text-sm font-bold hover:bg-neutral-200 shrink-0">Submit</button>
                 </form>
+                <div id="metaFlagError" class="hidden mt-2 text-xs text-red-400 animate-pulse">❌ Incorrect flag. Check the EXIF tags.</div>
+                <div id="metaFlagReveal" class="hidden mt-3 border border-green-900/50 bg-green-900/10 rounded-lg p-3">
+                    <div class="text-green-400 font-bold text-xs mb-1">✓ Correct Flag</div>
+                    <div class="font-mono text-green-300 text-xs select-all"><?= htmlspecialchars($challenge_flag) ?></div>
+                    <div class="text-neutral-500 text-[10px] mt-1">Submit this at Mission Control to record your solve.</div>
+                </div>
             </div>
         </div>
 
@@ -154,5 +162,28 @@
         fileInput.value = '';
         resultsArea.classList.add('hidden');
         dropzone.classList.remove('hidden');
+    }
+
+    function checkMetaFlag(e) {
+        e.preventDefault();
+        const input   = document.getElementById('metaFlagInput');
+        const error   = document.getElementById('metaFlagError');
+        const reveal  = document.getElementById('metaFlagReveal');
+        const correct = '<?= addslashes($challenge_flag) ?>';
+
+        if (input.value.trim().toLowerCase() === correct.toLowerCase()) {
+            error.classList.add('hidden');
+            input.classList.remove('border-red-600');
+            input.classList.add('border-green-600');
+            reveal.classList.remove('hidden');
+        } else {
+            reveal.classList.add('hidden');
+            error.classList.remove('hidden');
+            input.classList.add('border-red-600');
+            setTimeout(() => {
+                input.classList.remove('border-red-600');
+                error.classList.add('hidden');
+            }, 1500);
+        }
     }
 </script>
