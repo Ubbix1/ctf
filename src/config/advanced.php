@@ -87,6 +87,19 @@ function ensure_advanced_ctf_tables() {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             INDEX idx_sandbox_user (user_id),
             INDEX idx_sandbox_created (created_at)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci",
+
+        "CREATE TABLE IF NOT EXISTS ctf_sessions (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            duration_seconds INT NOT NULL,
+            status VARCHAR(20) NOT NULL DEFAULT 'active',
+            started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            ends_at TIMESTAMP NULL DEFAULT NULL,
+            completed_at TIMESTAMP NULL DEFAULT NULL,
+            INDEX idx_session_user (user_id),
+            INDEX idx_session_status (status),
+            CONSTRAINT fk_ctf_sessions_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
     ];
 

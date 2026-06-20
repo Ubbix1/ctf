@@ -1,3 +1,7 @@
+# Prevent access to sensitive files and directories
+RedirectMatch 404 /\.git
+RedirectMatch 404 /\.env
+
 RewriteEngine On
 
 # If the request points to an existing file or directory, serve it directly.

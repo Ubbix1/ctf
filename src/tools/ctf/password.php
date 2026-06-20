@@ -1,3 +1,6 @@
+<?php
+$challenge_flag = get_ctf_flag_map()['pass'] ?? '';
+?>
 <!-- Dependencies -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
@@ -69,6 +72,22 @@
                     </div>
                 </div>
 
+                <!-- Flag Reveal -->
+                <div id="flagReveal" class="hidden mt-6 border border-green-900/50 bg-green-900/10 rounded-xl p-5 animate-fade-in-up">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center text-green-400 shrink-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-green-400 font-bold text-sm">Hash Cracked Successfully</div>
+                            <div class="text-neutral-400 text-xs mt-0.5">Copy the flag below and submit it at Mission Control.</div>
+                        </div>
+                    </div>
+                    <div class="bg-black border border-green-900/50 rounded-lg px-4 py-3 font-mono text-green-400 text-sm tracking-wide select-all">
+                        <?= htmlspecialchars($challenge_flag) ?>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -110,9 +129,11 @@
                 consoleDiv.innerHTML += `\n<span class="text-green-500">[+] MATCH FOUND!</span>`;
                 consoleDiv.innerHTML += `\n\n<span class="text-white font-bold bg-green-900/50 p-1">PASSWORD: ${word}</span>`;
                 consoleDiv.scrollTop = consoleDiv.scrollHeight;
-                
+
                 badge.innerText = "CRACKED";
                 badge.className = "text-[10px] font-bold px-2 py-1 rounded bg-green-900 text-green-200 absolute top-2 right-2";
+
+                document.getElementById('flagReveal').classList.remove('hidden');
                 return;
             } else {
                 // Show progress every few words

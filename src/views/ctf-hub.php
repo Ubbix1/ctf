@@ -338,6 +338,25 @@ function renderCard($id, $title, $desc, $link, $diff, $points, $ctf_active, $cur
         </div>
     <?php endif; ?>
 
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <?php
+        $ctf_active = !empty($_SESSION['ctf_active']);
+        renderCard('caesar', 'Caesar Cipher', 'Intercepted comms detected. Decrypt the message shift by shift.', '/ctf/caesar', 'Easy', get_dynamic_challenge_points($current_user_id, 'caesar'), $ctf_active, $current_user_id);
+        renderCard('meta', 'Metadata Analysis', 'Hidden data lies within the files. Extract the EXIF tags.', '/ctf/meta', 'Easy', get_dynamic_challenge_points($current_user_id, 'meta'), $ctf_active, $current_user_id);
+        renderCard('base64', 'Base64 Decode', 'Standard encoding used for obfuscation. Decode the payload.', '/ctf/base64', 'Easy', get_dynamic_challenge_points($current_user_id, 'base64'), $ctf_active, $current_user_id);
+        renderCard('redirect', 'Open Redirect', 'The login page redirects to an unsafe location. Exploit it.', '/ctf/redirect', 'Medium', get_dynamic_challenge_points($current_user_id, 'redirect'), $ctf_active, $current_user_id);
+        renderCard('pass', 'Password Crack', 'Hash leaked. Brute force the password from the wordlist.', '/ctf/password', 'Medium', get_dynamic_challenge_points($current_user_id, 'pass'), $ctf_active, $current_user_id);
+        renderCard('ports', 'Open Ports', 'Scan the target IP. Identify the vulnerable service.', '/ctf/ports', 'Medium', get_dynamic_challenge_points($current_user_id, 'ports'), $ctf_active, $current_user_id);
+        renderCard('xss', 'XSS Injection', 'Inject malicious script into the feedback form.', '/ctf/xss', 'Hard', get_dynamic_challenge_points($current_user_id, 'xss'), $ctf_active, $current_user_id);
+        renderCard('md5', 'MD5 Cracking', 'Reverse the hash. Find the original string.', '/ctf/md5', 'Hard', get_dynamic_challenge_points($current_user_id, 'md5'), $ctf_active, $current_user_id);
+        renderCard('desync', 'desync', 'HTTP request smuggling through proxy/backend desync to internal admin flag endpoint.', '/ctf/desync', 'Extreme', get_dynamic_challenge_points($current_user_id, 'desync'), $ctf_active, $current_user_id);
+        renderCard('blind', 'blind', 'Blind command injection with out-of-band exfiltration and no direct output.', '/ctf/blind', 'Extreme', get_dynamic_challenge_points($current_user_id, 'blind'), $ctf_active, $current_user_id);
+        renderCard('chain', 'chain', 'Foothold to root through a full Linux privilege escalation attack path.', '/ctf/chain', 'Extreme', get_dynamic_challenge_points($current_user_id, 'chain'), $ctf_active, $current_user_id);
+        renderCard('pickle', 'pickle', 'Exploit Python pickle deserialization in session cookie workflow.', '/ctf/pickle', 'Extreme', get_dynamic_challenge_points($current_user_id, 'pickle'), $ctf_active, $current_user_id);
+        renderCard('c2', 'c2', 'Memory forensics beacon hunt with process-network correlation.', '/ctf/c2', 'Extreme', get_dynamic_challenge_points($current_user_id, 'c2'), $ctf_active, $current_user_id);
+        ?>
+    </div>
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
         <div class="lg:col-span-2 border border-neutral-800 bg-neutral-950 rounded-2xl p-6">
             <div class="flex justify-between text-xs text-neutral-500 mb-2 uppercase tracking-widest">
@@ -379,25 +398,6 @@ function renderCard($id, $title, $desc, $link, $diff, $points, $ctf_active, $cur
             </div>
             <div class="mt-4 text-xs text-neutral-500">Mastery Score: <?= number_format((float) ($mastery['mastery_score'] ?? 0), 1) ?> · Accuracy: <?= number_format((float) ($mastery['accuracy'] ?? 0), 1) ?>%</div>
         </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <?php
-        $ctf_active = !empty($_SESSION['ctf_active']);
-        renderCard('caesar', 'Caesar Cipher', 'Intercepted comms detected. Decrypt the message shift by shift.', '/ctf/caesar', 'Easy', get_dynamic_challenge_points($current_user_id, 'caesar'), $ctf_active, $current_user_id);
-        renderCard('meta', 'Metadata Analysis', 'Hidden data lies within the files. Extract the EXIF tags.', '/ctf/meta', 'Easy', get_dynamic_challenge_points($current_user_id, 'meta'), $ctf_active, $current_user_id);
-        renderCard('base64', 'Base64 Decode', 'Standard encoding used for obfuscation. Decode the payload.', '/ctf/base64', 'Easy', get_dynamic_challenge_points($current_user_id, 'base64'), $ctf_active, $current_user_id);
-        renderCard('redirect', 'Open Redirect', 'The login page redirects to an unsafe location. Exploit it.', '/ctf/redirect', 'Medium', get_dynamic_challenge_points($current_user_id, 'redirect'), $ctf_active, $current_user_id);
-        renderCard('pass', 'Password Crack', 'Hash leaked. Brute force the password from the wordlist.', '/ctf/password', 'Medium', get_dynamic_challenge_points($current_user_id, 'pass'), $ctf_active, $current_user_id);
-        renderCard('ports', 'Open Ports', 'Scan the target IP. Identify the vulnerable service.', '/ctf/ports', 'Medium', get_dynamic_challenge_points($current_user_id, 'ports'), $ctf_active, $current_user_id);
-        renderCard('xss', 'XSS Injection', 'Inject malicious script into the feedback form.', '/ctf/xss', 'Hard', get_dynamic_challenge_points($current_user_id, 'xss'), $ctf_active, $current_user_id);
-        renderCard('md5', 'MD5 Cracking', 'Reverse the hash. Find the original string.', '/ctf/md5', 'Hard', get_dynamic_challenge_points($current_user_id, 'md5'), $ctf_active, $current_user_id);
-        renderCard('desync', 'desync', 'HTTP request smuggling through proxy/backend desync to internal admin flag endpoint.', '/ctf/desync', 'Extreme', get_dynamic_challenge_points($current_user_id, 'desync'), $ctf_active, $current_user_id);
-        renderCard('blind', 'blind', 'Blind command injection with out-of-band exfiltration and no direct output.', '/ctf/blind', 'Extreme', get_dynamic_challenge_points($current_user_id, 'blind'), $ctf_active, $current_user_id);
-        renderCard('chain', 'chain', 'Foothold to root through a full Linux privilege escalation attack path.', '/ctf/chain', 'Extreme', get_dynamic_challenge_points($current_user_id, 'chain'), $ctf_active, $current_user_id);
-        renderCard('pickle', 'pickle', 'Exploit Python pickle deserialization in session cookie workflow.', '/ctf/pickle', 'Extreme', get_dynamic_challenge_points($current_user_id, 'pickle'), $ctf_active, $current_user_id);
-        renderCard('c2', 'c2', 'Memory forensics beacon hunt with process-network correlation.', '/ctf/c2', 'Extreme', get_dynamic_challenge_points($current_user_id, 'c2'), $ctf_active, $current_user_id);
-        ?>
     </div>
 </div>
 

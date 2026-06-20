@@ -33,11 +33,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Note: In a real deployment, you would link to a real file here -->
-                <button class="w-full border border-dashed border-neutral-700 text-neutral-400 py-2 rounded text-xs hover:text-white hover:border-neutral-500" disabled>
-                    (Sample Download Unavailable in Demo)
-                </button>
-                <p class="text-[10px] text-neutral-600 mt-2">* Upload any JPG to test the tool.</p>
+                <a href="/assets/evidence_04.jpeg" download="evidence_04.jpeg"
+                   class="block w-full text-center border border-neutral-700 text-neutral-300 py-2 rounded text-xs hover:text-white hover:border-white hover:bg-neutral-900 transition-colors">
+                    ⬇ Download evidence_04.jpeg
+                </a>
+                <p class="text-[10px] text-neutral-600 mt-2">* Download the file, then upload it above to extract EXIF tags.</p>
             </div>
 
             <!-- Flag Input Shortcut -->

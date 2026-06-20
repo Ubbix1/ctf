@@ -1,0 +1,13 @@
+networks:
+  cloud_net:
+    external: true
+
+services:
+  ctf:
+    build: .
+    container_name: ctf
+    restart: unless-stopped
+    environment:
+      - BOT_TOKEN=
+    networks:
+      - cloud_net
