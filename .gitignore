@@ -71,3 +71,6 @@ README_FIRST.txt
 00_READ_ME_FIRST.txt
 DATABASE_SETUP.md
 style.txt
+rebuild.sh
+test-db.php
+

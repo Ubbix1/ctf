@@ -127,7 +127,11 @@ if (!file_exists($content_view) && $path !== '') {
 
 // 6. Load the Master Layout
 // The layout will include the $content_view
-require_once 'src/layout.php';
+if ($path === 'ctf/scoreboard-stream') {
+    include $content_view;
+} else {
+    require_once 'src/layout.php';
+}
 
 // 7. Flush Buffer
 // Send the final HTML to the browser
