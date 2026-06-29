@@ -8,7 +8,7 @@
         <a href="https://plexaur.com" class="text-white underline hover:text-neutral-300 transition-colors decoration-neutral-700 underline-offset-4 ml-2">- Plexaur</a>
     </p>
     <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a href="#tools" class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-all">
+        <a href="https://ctf.plexaur.com/ctf" class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-all">
             Get Started
         </a>
         <a href="/ctf" class="px-8 py-3 border border-neutral-700 text-neutral-300 font-medium rounded-full hover:bg-neutral-900 transition-all">
